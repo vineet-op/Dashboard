@@ -6,21 +6,22 @@ const express = require('express')
 const app = express()
 const cors = require("cors")
 app.use(express.json());
+require('dotenv').config();
 
 // MongoDB connection
 mongoose
-    .connect("mongodb+srv://massleo100:xpaTuiihkEs0lqE8@cluster0.egtnw.mongodb.net/")
+    .connect(process.env.MONGO_URL || "")
     .then(() => console.log("Connected to MongoDB"))
     .catch((err) => console.error("MongoDB connection error:", err));
 
-const db = mongoose.connection;
+// const db = mongoose.connection;
 
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
+// db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-db.once("open", async () => {
-    console.log("Connected to MongoDB");
-    await importCSV()
-});
+// db.once("open", async () => {
+//     console.log("Connected to MongoDB");
+//     // await importCSV()
+// });
 
 // Import CSV file
 const importCSV = async () => {
@@ -47,8 +48,6 @@ const importCSV = async () => {
                 console.log("Data successfully inserted into MongoDB");
             } catch (error) {
                 console.error("Error inserting data:", error);
-            } finally {
-                mongoose.connection.close();
             }
         });
 };
@@ -72,6 +71,16 @@ app.get("/api/data", async (req, res) => {
         res.status(500).json({ message: "Error fetching data", error: err });
     }
 });
+
+app.get("/api/data/bulk", async (req, res) => {
+    try {
+        const allData = await Record.find({});
+        res.json(allData);
+    } catch (err) {
+        res.status(500).json({ message: "Error fetching data", error: err });
+        console.log(err);
+    }
+})
 
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -83,7 +83,7 @@ const App = () => {
   };
 
   return (
-    <>
+    <div>
       <div className="p-6 bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-700 text-white flex flex-wrap gap-5 font-medium text-lg shadow-lg rounded-lg">
         <div className="flex flex-col">
           <p className="mb-2">Select Date Range</p>
@@ -183,8 +183,8 @@ const App = () => {
         </div>
       </div>
 
-      <main className="flex flex-wrap gap-2 mt-8 justify-center">
-        <Card className="w-[45%] bg-slate-900 shadow-xl rounded-lg">
+      <main className="flex flex-wrap lg:flex flex-col w-screen bg-slate-900 gap-2 justify-center">
+        <Card className="w-[100%] bg-slate-900 shadow-xl rounded-lg">
           <CardHeader>
             <CardTitle className="text-white text-xl">Bar Chart - Horizontal</CardTitle>
           </CardHeader>
@@ -210,7 +210,7 @@ const App = () => {
           </CardContent>
         </Card>
 
-        <Card className="w-[50%] bg-slate-900 shadow-xl rounded-lg">
+        <Card className="w-[100%] bg-slate-900 shadow-xl rounded-lg">
           <CardHeader>
             <CardTitle className="text-white text-xl">Line Chart</CardTitle>
           </CardHeader>
@@ -235,7 +235,7 @@ const App = () => {
           </CardContent>
         </Card>
       </main>
-    </>
+    </div>
   );
 };
 

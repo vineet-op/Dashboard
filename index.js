@@ -7,20 +7,21 @@ const app = express()
 const cors = require("cors")
 app.use(express.json());
 require('dotenv').config();
+app.use(cors())
+const jwt = require("jsonwebtoken")
 
-// MongoDB connection
 mongoose
     .connect(process.env.MONGO_URL || "")
     .then(() => console.log("Connected to MongoDB"))
     .catch((err) => console.error("MongoDB connection error:", err));
 
-// const db = mongoose.connection;
+const db = mongoose.connection;
 
 // db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 // db.once("open", async () => {
 //     console.log("Connected to MongoDB");
-//     // await importCSV()
+//     await importCSV()
 // });
 
 // Import CSV file
@@ -82,6 +83,9 @@ app.get("/api/data/bulk", async (req, res) => {
     }
 })
 
-const PORT = 3000;
+
+
+
+const PORT = 8000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 

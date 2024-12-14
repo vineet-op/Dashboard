@@ -8,6 +8,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -16,6 +17,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { format, isWithinInterval } from "date-fns";
 import axios from "axios";
 import { ResponsiveContainer } from "recharts";
+
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -98,7 +100,7 @@ const App = () => {
                   : "Select Date Range"}
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="p-4 bg-gray-800 rounded-lg">
+            <PopoverContent className="p-4 bg-white rounded-lg">
               <div className="flex gap-6">
                 <div>
                   <p className="font-semibold mb-2 text-white">Start Date</p>
